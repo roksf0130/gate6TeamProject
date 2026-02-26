@@ -1,0 +1,76 @@
+import cv2
+import easyocr
+from usermodules import extract_battery_spec
+
+def battery_ocr(img):
+    wattage = 0
+    return_type = 0
+
+    # 리사이즈 (가로 길이를 1000px 으로 고정하고 비율 맞추기)
+    height, width = img.shape[:2]
+    target_width = 2000
+    ratio = target_width / float(width)
+    target_height = int(height * ratio)
+    img_resized = cv2.resize(img, (target_width, target_height), interpolation=cv2.INTER_AREA)
+
+    # 그레이스케일 변환 (흑백으로 만들어 인식 최적화)
+    gray_img = cv2.cvtColor(img_resized, cv2.COLOR_BGR2GRAY)
+
+    # 노이즈 제거 및 대비 향상
+    processed_img = cv2.adaptiveThreshold(
+        gray_img, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 51, 5
+    )
+
+    # OCR 리더 초기화 (한국어와 영어 설정)
+    reader = easyocr.Reader(['ko', 'en'])
+
+    # 이미지 로드 및 텍스트 추출
+    results = reader.readtext(processed_img)
+
+    all_text = ""
+    for (bbox, text, prob) in results:
+        # print(f"인식: {text} (신뢰도: {prob:.2f})")
+        all_text += text + " "
+
+    # 텍스트 클리닝
+    result = extract_battery_spec.extract_battery_spec(all_text)
+    print(result)
+
+    wh_pattern = result.get('Wh')
+    mah_pattern = result.get('mAh')
+    v_pattern = result.get('V')
+
+    # print(wh_pattern, mah_pattern, v_pattern)
+
+    # 판별 로직 (return_value : 0 문자인식 실패, 1 기내반입 가능(5개), 2 기내반입 가능(2개 카운터방문 필요), 3 불가)
+    # 전력량이 표시되어 있을 때는 전력량으로 결과 리턴
+    if wh_pattern:
+        # 숫자만 추출
+        wattage = float(wh_pattern)
+
+        if wattage <= 100:
+            return_type = 1
+        elif wattage <= 160:
+            return_type = 2
+        else:
+            return_type = 3
+    # 전력량이 표시되어 있지 않을 때는 전류와 전압으로 전력량 계산
+    elif mah_pattern and v_pattern:
+        floatValue_mAh = float(mah_pattern)
+        floatValue_V = float(v_pattern)
+        wattage = (floatValue_mAh / 1000) * floatValue_V    # 전력량은 전류 * 전압으로 계산
+
+        if wattage <= 100:
+            return_type = 1
+        elif wattage <= 160:
+            return_type = 2
+        else:
+            return_type = 3
+    # 인식을 제대로 못했을 경우에는 0을 리턴
+    else:
+        return_type = 0
+
+    # TEST : 전처리된 이미지가 어떻게 보이는지 확인용 저장
+    cv2.imwrite('processed_test.jpg', processed_img)
+
+    return wattage, return_type
