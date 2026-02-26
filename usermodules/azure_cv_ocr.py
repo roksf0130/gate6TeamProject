@@ -1,22 +1,26 @@
 import requests
 import time
-import os
-from dotenv import load_dotenv
+# import os
+# from dotenv import load_dotenv
 from pathlib import Path
 from usermodules import extract_battery_spec
+import streamlit as st
 
 def azure_cv_ocr():
     wattage = 0
     return_type = 0
 
-    load_dotenv()
+    # load_dotenv()
 
     BASE_DIR = Path(__file__).resolve().parent
     image_path = BASE_DIR.parent / "uploads" / "fixed_temp_image.jpg"
 
     # 기본 설정
-    azure_cv_endpoint = os.getenv("AZURE_CV_ENDPOINT")
-    azure_cv_key = os.getenv("AZURE_CV_KEY")
+    # azure_cv_endpoint = os.getenv("AZURE_CV_ENDPOINT")
+    # azure_cv_key = os.getenv("AZURE_CV_KEY")
+
+    azure_cv_endpoint = st.secrets["AZURE_CV_ENDPOINT"]
+    azure_cv_key = st.secrets["AZURE_CV_KEY"]
     azure_cv_url = azure_cv_endpoint + "vision/v3.2/read/analyze"
 
     azure_cv_headers = {
