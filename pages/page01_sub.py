@@ -72,42 +72,6 @@ if uploaded_file is not None:
         image = image.convert('RGB') # MPO 정보를 버리고 일반 RGB로 변환
         image.save('./uploads/fixed_temp_image.jpg', 'JPEG')
 
-    # with col2:
-    #     st.write('💻 AI 분석 결과')
-
-    #     # 진행바 생성
-    #     progress_text = 'AI가 이미지를 분석 중입니다. 잠시만 기다려 주세요...'
-    #     progress_bar = st.progress(0, text=progress_text)
-
-    #     # 진행바 애니메이션
-    #     for percent_complete in range(100):
-    #         time.sleep(0.01) # 진행바가 올라가는 속도 조절
-    #         progress_bar.progress(percent_complete + 1, text=progress_text)
-
-    #     # 함수 호출
-    #     # wattage, return_type = battery_ocr.battery_ocr(cv2_image)
-    #     wattage, return_type = azure_cv_ocr.azure_cv_ocr()
-
-    #     # 분석 완료 후 바 제거
-    #     progress_bar.empty()
-    #     st.success('✅ 분석이 완료되었습니다!')
-
-    #     # 결과 출력
-    #     if return_type == 0:
-    #         st.error('❌ 사진 분석에 실패했습니다. 배터리 스펙부분을 확대한 선명한 사진을 업로드하면 인식률이 더욱 향상됩니다.')
-    #     elif return_type == 1:
-    #         st.info(f'측정된 전력량 : {wattage:.2f}Wh')
-    #         st.info('✈️  1인 5개까지 기내 반입이 가능한 용량입니다.')
-    #     elif return_type == 2:
-    #         st.info(f'측정된 전력량 : {wattage:.2f}Wh')
-    #         st.info('✈️  1인 2개까지 기내 반입이 가능하지만 승인을 위해 카운터 방문이 필요합니다.')
-    #     else:
-    #         st.error(f'측정된 전력량 : {wattage:.2f}Wh')
-    #         st.error(f'❌ 기내 반입 불가 용량입니다.')
-
 st.markdown('---')
 if st.button('배터리 용량 계산법'):
     show_modal()
-
-# if st.button('🔄 다시 검사하기'):
-#     st.rerun()
