@@ -14,7 +14,7 @@ def azure_cv_classify():
 
     azure_cv_endpoint = st.secrets['AZURE_CV_CLASSIFY_ENDPOINT']
     azure_cv_key = st.secrets['AZURE_CV_CLASSIFY_KEY']
-    azure_cv_url = azure_cv_endpoint + 'customvision/v3.0/Prediction/0c07f4c5-7f9b-4c1b-9b21-3c7f0dfd2538/classify/iterations/test_3/image'
+    azure_cv_url = azure_cv_endpoint + 'customvision/v3.0/Prediction/0c07f4c5-7f9b-4c1b-9b21-3c7f0dfd2538/classify/iterations/test_9/image'
 
     azure_cv_headers = {
         'Prediction-Key': azure_cv_key,
