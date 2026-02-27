@@ -11,8 +11,8 @@ pages = {
         st.Page('./pages/page04.py', title='💊제한적 기내 반입 물품'),
         st.Page('./pages/page05.py', title='🥂위탁 수하물 제한 물품'),
     ],
-    'test2': [
-        st.Page('./pages/page06.py', title='📷test 03'),
+    'ResNet50 테스트': [
+        st.Page('./pages/page06.py', title='ResNet50 테스트'),
         st.Page('./pages/page07.py', title='⚖️test 04'),
     ],
 }
