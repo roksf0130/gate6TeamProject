@@ -52,6 +52,9 @@ st.set_page_config(page_title='보조배터리 기내반입 판별', page_icon='
 st.title(body='보조배터리 기내반입 판별 🤔', width='stretch', text_alignment='center')
 st.markdown('---')
 
+if 'processed' not in st.session_state:
+    st.session_state.processed = False
+
 uploaded_file = st.file_uploader(label='보조배터리의 상세 스펙 사진을 촬영 또는 업로드해주세요', type=['jpg','jpeg','png','bmp'])
 
 if uploaded_file is not None:

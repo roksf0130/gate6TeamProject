@@ -32,6 +32,8 @@ def classify_analyze():
             st.error(f'<{classify_result}> 으로 확인됩니다. 신뢰도는 {round(probability * 100, 2)}% 입니다.')
             st.error(f'이 물품은 기내반입이 불가합니다.')
 
+if 'processed' not in st.session_state:
+    st.session_state.processed = False
 
 # 페이지 설정
 st.set_page_config(page_title='기내반입 가능 물품 판별', page_icon='✈️', layout='centered')
