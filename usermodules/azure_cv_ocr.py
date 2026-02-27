@@ -13,43 +13,43 @@ def azure_cv_ocr():
     # load_dotenv()
 
     BASE_DIR = Path(__file__).resolve().parent
-    image_path = BASE_DIR.parent / "uploads" / "fixed_temp_image.jpg"
+    image_path = BASE_DIR.parent / 'uploads' / 'fixed_temp_image.jpg'
 
     # 기본 설정
     # azure_cv_endpoint = os.getenv("AZURE_CV_ENDPOINT")
     # azure_cv_key = os.getenv("AZURE_CV_KEY")
 
-    azure_cv_endpoint = st.secrets["AZURE_CV_ENDPOINT"]
-    azure_cv_key = st.secrets["AZURE_CV_KEY"]
-    azure_cv_url = azure_cv_endpoint + "vision/v3.2/read/analyze"
+    azure_cv_endpoint = st.secrets['AZURE_CV_OCR_ENDPOINT']
+    azure_cv_key = st.secrets['AZURE_CV_OCR_KEY']
+    azure_cv_url = azure_cv_endpoint + 'vision/v3.2/read/analyze'
 
     azure_cv_headers = {
-        "Ocp-Apim-Subscription-Key": azure_cv_key,
-        "Content-Type": "application/octet-stream"
+        'Ocp-Apim-Subscription-Key': azure_cv_key,
+        'Content-Type': 'application/octet-stream'
     }
 
-    with open(image_path, "rb") as f:
+    with open(image_path, 'rb') as f:
         ocr_image = f.read()
 
     # Azure CV를 이용한 OCR 시작
     azure_cv_response = requests.post(azure_cv_url, headers=azure_cv_headers, data=ocr_image)
-    operation_url = azure_cv_response.headers["Operation-Location"]
+    operation_url = azure_cv_response.headers['Operation-Location']
 
     # Azure에서 응답이 올때까지 대기
     while True:
-        result = requests.get(operation_url, headers={"Ocp-Apim-Subscription-Key": azure_cv_key})
+        result = requests.get(operation_url, headers={'Ocp-Apim-Subscription-Key': azure_cv_key})
         result_json = result.json()
 
-        if result_json["status"] == "succeeded":
+        if result_json['status'] == 'succeeded':
             break
 
         time.sleep(1)
 
     # OCR 인식 결과에서 텍스트 추출
-    full_text = ""
-    for page in result_json["analyzeResult"]["readResults"]:
-        for line in page["lines"]:
-            full_text += line["text"] + " "
+    full_text = ''
+    for page in result_json['analyzeResult']['readResults']:
+        for line in page['lines']:
+            full_text += line['text'] + ' '
 
     # 텍스트 클리닝
     cleaned_text = extract_battery_spec.extract_battery_spec(full_text)
