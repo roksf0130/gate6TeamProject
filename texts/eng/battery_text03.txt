@@ -1,0 +1,8 @@
+🔌 How to calculate Wh when the voltage is labeled but the amount of energy (Wh) is not labeled
+|Labeled|Formula|Capacity|
+|:---:|:---:|:---:|
+|15,000mAh, 3.7V|(15,000 ÷ 1,000) X 3.7|55Wh|
+|15Ah, 3.7V|15 X 3.7|55Wh|
+- Electric charge (Ah) X voltage (V) = amount of energy (Wh)
+- 1Ah = 1,000mAh
+- Products without a voltage (V) labeled may not be allowed to be transported as the capacity is unknown.

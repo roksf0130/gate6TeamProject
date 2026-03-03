@@ -1,0 +1,11 @@
+💡 Travel regulations (Carry-on :blue[O], checked baggage :red[X]) : The use and charging of spare lithium batteries on board are strictly prohibited.
+|Lithium battery capacity|Maximum number allowed|
+|:---:|:---:|
+|100Wh or less|5 per person<br>(If you are carrying more than 6 batteries, you must visit the check-in counter for airline approval)|
+|Over 100Wh to 160Wh|2 per person<br>(Must visit the check-in counter for airline approval)|
+|Over 160Wh|Transport not permitted|
+- They may not be transported if batteries exceed the maximum limit or cannot be confirmed. (not permitted in either carry-on or checked baggage)
+- For flights departing from overseas, stricter regulations may apply depending on the airport or country.
+- To prevent short circuits, batteries must be wrapped in insulation tape or individually placed in transparent plastic bags to carry them on board. Storing them in the overhead bin is strictly prohibited.
+- More than 6 spare lithium batteries with a capacity of 100Wh or less are allowed for hand carry only for special purposes such as medical use. (A maximum of 20 batteries is permitted.)
+- Power banks are allowed on board for medical purposes only (e.g., POC, CPAP).

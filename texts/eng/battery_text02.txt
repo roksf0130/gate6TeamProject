@@ -1,0 +1,5 @@
+🔌 How to calculate Wh when the amount of energy is labeled
+|Labeled|Capacity|
+|:---:|:---:|
+|10,000mAh, 3.7V, **36Wh**|36Wh|
+|10Ah, 3.7V, **37Wh**|36Wh|

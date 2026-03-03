@@ -3,6 +3,8 @@ import time
 from pathlib import Path
 from usermodules import extract_battery_spec
 import streamlit as st
+from PIL import Image, ImageOps
+import io
 
 def azure_cv_classify():
     classify_result = ''
@@ -23,6 +25,20 @@ def azure_cv_classify():
 
     with open(image_path, 'rb') as f:
         classify_image = f.read()
+    # 바이트 데이터를 PIL 이미지 객체로 변환
+    img = Image.open(io.BytesIO(classify_image))
+    img = img.convert('RGB')
+
+    # 목표 사이즈 설정
+    target_size = (224, 224)
+
+    # 원본 사진의 비율 유지하며 리사이즈하고 나머지를 검정색으로 채우기.
+    preprocessed_img = ImageOps.pad(img, target_size, color=(0, 0, 0))
+
+    # 애저CV를 이용한 물품판별을 위해 전처리된 이미지를 다시 바이트 형태로 변환
+    buffer = io.BytesIO()
+    preprocessed_img.save(buffer, format="JPEG")
+    classify_image = buffer.getvalue()
 
     # Azure CV를 이용한 OCR 시작
     classify_cv_response = requests.post(azure_cv_url, headers=azure_cv_headers, data=classify_image)

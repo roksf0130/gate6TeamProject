@@ -1,0 +1,7 @@
+♿  Electric wheelchairs with a lithium battery (Carry-on :blue[O], checked baggage :red[X])
+- Maximum capacity for removable lithium batteries 300Wh or less (carried by passengers)
+- Spare batteries (other than wheelchair batteries)
+    - 1 battery: 300Wh or less
+    - 2 batteries: 160Wh or less each
+- If a battery is not removable, you must make sure it is attached securely on the electric wheelchair and take the necessary measures to prevent short circuits.
+    - You cannot carry the batteries if short circuits cannot be prevented.

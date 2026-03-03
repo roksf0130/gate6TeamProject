@@ -1,0 +1,11 @@
+💡 Travel regulations (Carry-on :blue[O], checked baggage :blue[O])
+|Lithium battery capacity|Maximum number allowed|
+|:---:|:---:|
+|Under 160Wh|15 per person<br>(Batteries exceeding 100Wh (2g) and up to 160Wh (8g), or more than 15 batteries, require you to visit the check-in counter for airline approval)|
+|Over 160Wh (8 g)|Transport not permitted|
+- Lithium metal,alloy batteries of capacities over 2 g up to 8 g are only permitted for portable medical devices such as POC and CPAP. Spare lithium metal,alloy batteries of capacities over 2 g in general electronic devices are not permitted in carry-on or checked baggage.
+- If the portable oxygen concentrator (POC) has a battery specification of 1 pack with 2 or more batteries (non-removable), the total capacity is based on the combined capacity of the specified batteries.
+- Please handle laptops and other portable devices carefully during the flight to prevent overheating and fire. If any items fall between the seats, please ask our cabin crew for assistance.
+- Devices with non-removable batteries that generate heat are prohibited in both carry-on and checked baggage.
+- Cordless hair irons with removable batteries or a physical battery disconnection feature (fuse cutoff) can be carried on board after airline approval (cannot be checked).
+- Airplane modes such as button or lock types are not permitted for transport

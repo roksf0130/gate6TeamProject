@@ -1,0 +1,5 @@
+- Lithium battery (non-removable) : Not allowed in carry-on and checked baggage
+- Lithium battery (removable) : Allowed in carry-on baggage only, Not allowed in checked baggage
+    - Battery must be removed and carried in carry-on baggage (short-circuit protection required).
+- If the capacity exceeds 160Wh, it is prohibited in both carry-on and checked baggage.
+- To prevent short circuits, batteries must be wrapped in insulation tape or individually placed in transparent plastic bags to carry them on board. Storing them in the overhead bin is strictly prohibited.

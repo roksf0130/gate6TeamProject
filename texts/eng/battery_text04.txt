@@ -1,0 +1,6 @@
+🔌 Example (for 3.7V)
+|Lithium battery capacity|Formula|Number allowed|
+|:---:|:---:|:---:|
+|100Wh (27,000mAh) or less|(27,000 ÷ 1,000) X 3.7 = 99.9Wh|5 per person|
+|160Wh (43,000mAh) or less|(43,000 ÷ 1,000) X 3.7 = 159.1Wh|2 per person|
+|Over 160Wh (43,000 mAh)|-|Transport not permitted|

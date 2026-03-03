@@ -1,0 +1,4 @@
+♿  Electric wheelchairs with a dry cell or wet cell battery (Carry-on :red[X], checked baggage :red[X])
+- Information on removability must be provided.
+- Information on the battery type (dry cell or wet cell) must be provided.
+- For wet cell batteries, information on spillability must be provided.
