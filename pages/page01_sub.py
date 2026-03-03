@@ -15,7 +15,14 @@ def session_change():
         st.session_state.processed = True
 
 
-@st.dialog(title="배터리 용량 계산법 안내", width="medium")
+@st.dialog(
+    title=(
+        "배터리 용량 계산법 안내"
+        if st.session_state["langpack"] == 0
+        else "How to calculate the capacity of spare batteries"
+    ),
+    width="medium",
+)
 def show_modal():
     if st.session_state["langpack"] == 0:
         st.markdown(
