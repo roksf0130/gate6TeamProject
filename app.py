@@ -84,12 +84,6 @@ pages = {
     ],
 }
 
-
-option_map = {
-    0: "한국어",
-    1: "ENG",
-}
-
 with st.sidebar:
     # pills 위젯
     lang = st.pills(
