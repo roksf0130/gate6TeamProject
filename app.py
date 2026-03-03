@@ -1,5 +1,17 @@
 import streamlit as st
 
+if "langpack" not in st.session_state:
+    st.session_state["langpack"] = 0
+
+
+def update_sidebar():
+    selected = st.session_state.my_pills
+    if selected == "한국어":
+        st.session_state["langpack"] = 0
+    else:
+        st.session_state["langpack"] = 1
+
+
 pages = {
     "HOME": [
         st.Page(
@@ -19,7 +31,11 @@ pages = {
             ),
         ),
     ],
-    "운송제한물품 안내": [
+    (
+        "운송제한물품 안내"
+        if st.session_state["langpack"] == 0
+        else "Restricted items information"
+    ): [
         st.Page(
             "./pages/page02.py",
             title=(
@@ -56,7 +72,7 @@ pages = {
     "ResNet50 테스트": [
         st.Page("./pages/page06.py", title="ResNet50 테스트"),
     ],
-    "오류 신고 / 제보하기": [
+    "오류 신고 / 제보하기" if st.session_state["langpack"] == 0 else "Contact us": [
         st.Page(
             "./pages/page07.py",
             title=(
@@ -68,27 +84,20 @@ pages = {
     ],
 }
 
-pg = st.navigation(pages)
 
 option_map = {
     0: "한국어",
     1: "ENG",
 }
 
-if "langpack" not in st.session_state:
-    st.session_state["langpack"] = 0
-
-# 사이드바에 select_slider 배치
 with st.sidebar:
-    selection = st.pills(
+    # pills 위젯
+    lang = st.pills(
         "언어 / LANGUAGE",
-        options=option_map.keys(),
-        format_func=lambda option: option_map[option],
-        selection_mode="single",
-        default=0,
+        ["한국어", "ENGLISH"],
+        key="my_pills",
+        on_change=update_sidebar,
     )
 
-    # 선택된 값을 세션 상태에 즉시 반영
-    st.session_state["langpack"] = selection
-
+pg = st.navigation(pages)
 pg.run()
