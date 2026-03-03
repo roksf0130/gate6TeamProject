@@ -206,7 +206,7 @@ if uploaded_file is not None:
             image = image.convert("RGB")  # MPO 정보를 버리고 일반 RGB로 변환
 
             if uploaded_file and not st.session_state.processed:
-                image.save("./uploads/fixed_temp_image.jpg", "JPEG")
+                image.save("uploads/fixed_temp_image.jpg", "JPEG")
 
 st.markdown("---")
 if st.button(
