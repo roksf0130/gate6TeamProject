@@ -5,7 +5,7 @@ if "langpack" not in st.session_state:
 
 # 글자 크기 조절
 if "font_size" not in st.session_state:
-    st.session_state["font_size"] = "18px"
+    st.session_state["font_size"] = "16px"
 
 
 def update_sidebar():
@@ -106,9 +106,9 @@ with st.sidebar:
     )
 
     if size_option == "보통(NORMAL)":
-        st.session_state["font_size"] = "18px"
+        st.session_state["font_size"] = "16px"
     else:
-        st.session_state["font_size"] = "24px"
+        st.session_state["font_size"] = "22px"
 
     st.markdown(
         f"""
