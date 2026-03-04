@@ -4,15 +4,26 @@ from pathlib import Path
 import streamlit as st
 from PIL import Image, ImageOps
 import io
+from usermodules.cv_logging import (
+    parse_top1,
+    decision_rule,
+    append_log,
+    now_utc_iso_no_microseconds,
+)
 
 
 def azure_cv_classify():
+
+    if "client_id" not in st.session_state:
+        st.session_state.client_id = f"session-{int(time.time())}"
+
     classify_result = ""
     probability = 0
     return_type = 0
 
     BASE_DIR = Path(__file__).resolve().parent
     image_path = BASE_DIR.parent / "uploads" / "fixed_classify_image.jpg"
+    LOG_PATH = BASE_DIR.parent / "predict.csv"
 
     azure_cv_endpoint = st.secrets["AZURE_CV_CLASSIFY_ENDPOINT"]
     azure_cv_key = st.secrets["AZURE_CV_CLASSIFY_KEY"]
@@ -43,9 +54,38 @@ def azure_cv_classify():
     preprocessed_img.save(buffer, format="JPEG")
     classify_image = buffer.getvalue()
 
+    start = time.time()
+
     # Azure CV를 이용한 OCR 시작
     classify_cv_response = requests.post(
         azure_cv_url, headers=azure_cv_headers, data=classify_image
+    )
+    classify_cv_response.raise_for_status()
+    raw = classify_cv_response.json()
+
+    pred_label, pred_prob = parse_top1(raw)
+    error_msg = ""
+    decision = ""
+    if pred_prob is None:
+        error_msg = "no_predictions"
+        decision = "ERROR"
+    else:
+        decision = decision_rule(pred_label, pred_prob, threshold=0.75)
+
+    latency_ms = int((time.time() - start) * 1000)
+
+    append_log(
+        LOG_PATH,
+        {
+            "ts": now_utc_iso_no_microseconds(),
+            "client_id": st.session_state.client_id,
+            "filename": "fixed_classify_image.jpg",
+            "pred_label": pred_label,
+            "pred_prob": pred_prob if pred_prob is not None else "",
+            "decision": decision,
+            "latency_ms": latency_ms,
+            "error": error_msg,
+        },
     )
 
     # 응답코드 확인
