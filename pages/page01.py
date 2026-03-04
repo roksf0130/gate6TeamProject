@@ -111,8 +111,10 @@ if uploaded_file is not None:
             if not st.session_state.processed:
                 image.convert("RGB").save("uploads/fixed_classify_image.jpg", "JPEG")
 
+st.markdown("---")
 if st.button(
     get_text("btn_check_battery"),
+    width="stretch",
     on_click=session_change(),
 ):
     st.switch_page("pages/page01_sub.py")
