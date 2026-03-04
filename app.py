@@ -73,9 +73,6 @@ pages = {
             ),
         ),
     ],
-    "ResNet50 테스트": [
-        st.Page("./pages/page06.py", title="ResNet50 테스트"),
-    ],
     "오류 신고 / 제보하기" if st.session_state["langpack"] == 0 else "Contact us": [
         st.Page(
             "./pages/page07.py",
