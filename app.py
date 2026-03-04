@@ -3,6 +3,10 @@ import streamlit as st
 if "langpack" not in st.session_state:
     st.session_state["langpack"] = 0
 
+# 글자 크기 조절
+if "font_size" not in st.session_state:
+    st.session_state["font_size"] = "18px"
+
 
 def update_sidebar():
     selected = st.session_state.my_pills
@@ -94,6 +98,30 @@ with st.sidebar:
         ["한국어", "ENGLISH"],
         key="my_pills",
         on_change=update_sidebar,
+        default="한국어",
+    )
+    # 글자 크기 조절
+    size_option = st.pills(
+        "글자 크기 / FONT SIZE",
+        ["보통(NORMAL)", "크게(BIG)"],
+        key="font_selector",
+        default="보통(NORMAL)",
+    )
+
+    if size_option == "보통(NORMAL)":
+        st.session_state["font_size"] = "18px"
+    else:
+        st.session_state["font_size"] = "24px"
+
+    st.markdown(
+        f"""
+        <style>
+        html, body, [class*="css"] {{
+            font-size: {st.session_state["font_size"]};
+        }}
+        </style>
+        """,
+        unsafe_allow_html=True,
     )
 
 pg = st.navigation(pages)
