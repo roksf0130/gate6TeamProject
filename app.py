@@ -82,6 +82,9 @@ pages = {
             ),
         ),
     ],
+    "ADMIN": [
+        st.Page("./pages/page08.py", title="⚠️ ADMIN"),
+    ],
 }
 
 with st.sidebar:
