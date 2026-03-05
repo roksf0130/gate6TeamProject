@@ -5,7 +5,7 @@ from usermodules.i18n import get_text
 
 
 def show_progress_bar():
-    """displays a localized progress bar for AI analysis."""
+    """Progress Bar 생성"""
     progress_text = get_text("analyzing_msg")
     progress_bar = st.progress(0, text=progress_text)
 
@@ -18,11 +18,11 @@ def show_progress_bar():
 
 
 def handle_image_removal(file_path):
-    """Removes the temporary image and updates session state."""
+    """판별 후 사진 삭제"""
     if os.path.exists(file_path):
         try:
             os.remove(file_path)
-            st.session_state.processed = True
+            st.session_state.processed = False
             st.toast(get_text("privacy_toast"))
         except Exception as e:
             st.error(f"Error deleting file: {e}")
@@ -34,7 +34,7 @@ def session_change():
 
 
 def apply_custom_css():
-    """Applies font size and structural styling."""
+    """폰트 사이즈 조절"""
     font_size = st.session_state.get("font_size", "16px")
     st.markdown(
         f"""
